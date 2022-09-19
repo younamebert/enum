@@ -19,16 +19,6 @@ func NewEnum(args ...string) Enum {
 	}
 }
 
-// func NewCustomEnum(args string..., contval int...) Enum {
-// 	enum := make(map[string]int, 0)
-// 	for index, val := range args {
-// 		enum[val] = index
-// 	}
-// 	return Enum{
-// 		enum: enum,
-// 	}
-// }
-
 func (e Enum) IsEnum(sy string) bool {
 	_, ok := e.enum[sy]
 	return ok
@@ -62,8 +52,7 @@ func (e Enum) RemoveEnum(sy string) error {
 }
 
 func (e Enum) SetEnum(sy string, syv int) error {
-	_, ok := e.enum[sy]
-	if !ok {
+	if !e.IsEnum(sy) {
 		return errors.New("does not exist in the enum")
 	}
 	e.enum[sy] = syv
