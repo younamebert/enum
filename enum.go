@@ -2,6 +2,7 @@ package enum
 
 import (
 	"errors"
+	"fmt"
 )
 
 type Enum struct {
@@ -42,15 +43,21 @@ func (e Enum) IsEnums(sys ...string) bool {
 	return true
 }
 
-func (e Enum) AppendEnum(sy string) {
+func (e Enum) AppendEnum(sy string) error {
 	if !e.IsEnum(sy) {
 		e.enum[sy] = len(e.enum) + 1
+		return nil
+	} else {
+		return fmt.Errorf("duplicate data")
 	}
 }
 
-func (e Enum) RemoveEnum(sy string) {
+func (e Enum) RemoveEnum(sy string) error {
 	if e.IsEnum(sy) {
 		delete(e.enum, sy)
+		return nil
+	} else {
+		return fmt.Errorf("does not exist in the enum")
 	}
 }
 
