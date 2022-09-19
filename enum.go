@@ -54,8 +54,13 @@ func (e Enum) RemoveEnum(sy string) {
 	}
 }
 
-func (e Enum) SetEnum(sy string, syv int) {
+func (e Enum) SetEnum(sy string, syv int) error {
+	_, ok := e.enum[sy]
+	if !ok {
+		return errors.New("does not exist in the enum")
+	}
 	e.enum[sy] = syv
+	return nil
 }
 
 func (e Enum) Enum(s string) (int, error) {
