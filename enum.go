@@ -45,7 +45,7 @@ func (e Enum) IsEnums(sys ...string) bool {
 
 func (e Enum) AppendEnum(sy string) error {
 	if !e.IsEnum(sy) {
-		e.enum[sy] = len(e.enum) + 1
+		e.enum[sy] = len(e.enum)
 		return nil
 	} else {
 		return fmt.Errorf("duplicate data")
