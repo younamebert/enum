@@ -18,6 +18,16 @@ func NewEnum(args ...string) Enum {
 	}
 }
 
+// func NewCustomEnum(args string..., contval int...) Enum {
+// 	enum := make(map[string]int, 0)
+// 	for index, val := range args {
+// 		enum[val] = index
+// 	}
+// 	return Enum{
+// 		enum: enum,
+// 	}
+// }
+
 func (e Enum) IsEnum(sy string) bool {
 	_, ok := e.enum[sy]
 	return ok
